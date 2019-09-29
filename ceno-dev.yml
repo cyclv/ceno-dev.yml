@@ -1,0 +1,100 @@
+spring:
+    sleuth:
+        sampler:
+           probability: 1.0
+    zipkin:
+        base-url: http://localhost:9411/
+    cloud:
+        consul:
+            host: 127.0.0.1
+            port: 8500
+            discovery:
+                 healthcheckPath: /heal.check
+                 healthCheckInterval: 5s
+                 enabled: true
+                 prefer-ip-address: true
+            config:
+                enabled: true
+                format: yaml
+                prefix: config
+                profile-separator: ':'
+                data-key: data
+    mail:
+        host: smtp.163.com
+        username: ghtzzz@163.com
+        password: 123456ceno
+        protocol: smtp
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    port: 994
+                    starttls:
+                        enable: true
+                        required: true
+                    ssl:
+                        enable: true
+                display:
+                    sendmail: Javen
+                    sendname: Sping Boot Guide Email
+
+        default-encoding: utf-8
+mybatis:
+    type-aliases-package: com.ceno.common.entity
+    mapperLocations : classpath*:/mapper/*Mapper.xml,classpath*:/mapper/*/*Mapper.xml,classpath*:/mapper/*/*/*Mapper.xml
+    configuration:
+      map-underscore-to-camel-case: true
+ribbon:
+    # 设置连接超时时间
+    ReadTimeout: 100000
+    # 设置读取超时时间
+    ConnectTimeout: 100000
+    # 对所有操作请求都进行重试
+    OkToRetryOnAllOperations: true
+    # 切换实例的重试次数
+    MaxAutoRetriesNextServer: 2
+    # 对当前实例的重试次数
+    MaxAutoRetries: 1
+redis:
+    timeout: 10000
+    #最大连接数
+    maxTotal: 100
+    #最小空闲连接数
+    numTestsPerEvictionRun: 20
+    #对象空闲多久后逐出
+    softMinEvictableIdleTimeMillis: 10000
+    #逐出连接的最小空闲时间
+    minEvictableIdleTimeMillis: 1800000
+    #逐出扫描的时间间隔(毫秒)
+    timeBetweenEvictionRunsMillis: 30000
+    #在获取连接的时候检查有效性
+    testOnBorrow: true
+    #在空闲时检查有效性
+    testWhileIdle: true
+    #服务地址
+    url: 127.0.0.1
+    #端口(redis默认6379端口，如本地redis.conf文件未改动端口号，无需修改)
+    port: 6379
+    password:
+    #数据库索引号
+    indexDB: 0
+    #过期时间
+    expireTime: 604800
+    pool:
+        max-active: 20
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 2000
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+fileSevice:
+     image: /image/
+logback:
+  enableConsoleLogWhenNotInDev: false #非开发环境是否开启控制台日志
+  logFileDir: /snr-Log #**日志文件存放目录，目录后面无需再加"/"。备注如果这项不配置，则不输出日志文件
+  logLevel: ERROR
+pagehelper:
+    helperDialect: mysql
+    reasonable: false
+    params: count=countSql
